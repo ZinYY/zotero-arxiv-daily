@@ -60,7 +60,7 @@ def get_paper_tldr(paper:arxiv.Result, model:Llama) -> str:
     prompt = model.detokenize(prompt_tokens).decode('utf-8')
     response = model.create_chat_completion(
         messages=[
-          {"role": "system", "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user."},
+          {"role": "system", "content": "You are an assistant who perfectly summarizes scientific paper, and gives the core idea of the paper to the user. 在翻译专有术语时，请总是使用括号额外标注出该术语的原文；并当不确定某术语的含义时，请不要翻译该术语。请用中文输出summary。"},
           {
               "role": "user",
               "content": prompt
